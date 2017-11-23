@@ -11,7 +11,7 @@ select title from movie where director='steven spielberg';
 select year from Movie m join Rating r on m.mId=r.mID
 where stars='4' or stars='5' order by year;
 
-/*3.Find the titles of all movies that have no ratings. (1 point possible)
+/*3.Find the titles of all movies that have no ratings. (1 point possible)*/
 
 select title from Movie where mID not in(select mID from rating); 
 
@@ -57,8 +57,20 @@ m.mID=rt.mID group by title order by rating_spread ;
 
 /*9.Find the difference between the average rating of movies released before 1980 and the average rating of movies released after 1980. (Make sure to calculate the average rating for each movie, then the average of those averages for movies before 1980 and movies after. Don't just calculate the overall average rating before and after 1980.) (1 point possible)*/
 
-select average1-average2 as diff_bw_beforeandafter80 from (select avg(avgbefore80) as average1 from (select mid,avg(stars)as avgbefore80 from rating where mid in (select mid from movie where year<1980)  group by mid) a) c join
-(select avg(avgafter80) as average2 from (select mid,avg(stars)as avgafter80 from rating where mid in (select mid from movie where year>1980)  group by mid) b) d
+SELECT AVG(Before1980.avg) - AVG(After1980.avg)
+FROM (
+  SELECT AVG(stars) AS avg
+  FROM Movie m
+  INNER JOIN Rating rt on m.mID=rt.mID
+  WHERE year < 1980
+  GROUP BY mId
+) AS Before1980, (
+  SELECT AVG(stars) AS avg
+  FROM Movie m
+  INNER JOIN Rating rt on m.mID=rt.mID
+  WHERE year > 1980
+  GROUP BY mId
+) AS After1980;
 
 /*10.Find the names of all reviewers who rated Gone with the Wind. (1 point possible)*/
 
