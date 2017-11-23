@@ -122,9 +122,9 @@ on m.mID=rt.mID join Reviewer r on r.rID=rt.rID group by rt.mID;
 
 /*16.List movie titles and average ratings, from highest-rated to lowest-rated. If two or more movies have the same average rating, list them in alphabetical order. (1 point possible)*/
 
-select  title,avg( stars) from movie m join rating rt 
+select  title,avg( stars) as avg from movie m join rating rt 
 on m.mID=rt.mID join Reviewer r on r.rID=rt.rID group by rt.mID 
-order by title;
+order by avg DESC,title;
 
 /*17.Find the names of all reviewers who have contributed three or more ratings. (As an extra challenge, try writing the query without HAVING or without COUNT.) (1 point possible)*/
 
