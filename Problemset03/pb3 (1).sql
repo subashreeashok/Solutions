@@ -137,10 +137,8 @@ having count(rt.rID) >= 3
 
 select title, director
 from Movie
-where director in (select director
-from Movie
 group by director
-having count(director) >= 2)
+having count(director) >= 2
 order by director, title
 
 
