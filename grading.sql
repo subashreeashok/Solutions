@@ -1,3 +1,6 @@
+-- ProblemSet<Grading Set>, November <24> <2017> 
+-- Submission by <subashree.asokkumar@accenture.com>  
+
 /*1.Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.*/
 
 select CustomerId,FirstNAme,LastName,Country from Customer where Country not like '%USA%';
