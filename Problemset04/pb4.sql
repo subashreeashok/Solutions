@@ -20,7 +20,7 @@ from (select h1.name as sName, h1.grade as sGrade,
       h1.grade-h2.grade as gradeDiff 
      from Highschooler h1, Likes, Highschooler h2
      where h1.ID=ID1 and h2.ID=ID2) as LF
-     where gradeDiff>1;
+     where gradeDiff>=2;
 
 /*3.For every pair of students who both like each other, return the name and grade of both students. Include each pair only once, with the two names in alphabetical order. (1 point possible)*/
 
